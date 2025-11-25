@@ -1,0 +1,13 @@
+# Node
+node_modules
+dist
+coverage
+
+# Env files
+.env
+.env.local
+.env.test
+
+# IDE
+.vscode/
+.idea/

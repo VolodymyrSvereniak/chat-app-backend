@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { registerUser } from "../services/auth.service";
 import { generateToken } from "../utils/generateToken";
-import type { User } from "../generated/prisma/client";
+import type { SignUpResponse } from "../types/auth.types";
 
 export const signUp = async (req: Request, res: Response): Promise<void> => {
-  const result: { user: Omit<User, "password"> } = await registerUser(req.body);
+  const result: SignUpResponse = await registerUser(req.body);
   const token = generateToken({ userId: result.user.id });
 
   res.cookie("authToken", token, {

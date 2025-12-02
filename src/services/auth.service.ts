@@ -1,6 +1,6 @@
-import { prisma } from "../lib/prisma";
-import { SignUpData } from "../types/auth.types";
 import bcrypt from "bcryptjs";
+import { prisma } from "../lib/prisma";
+import type { SignUpData } from "../types/auth.types";
 
 export const registerUser = async ({
   fullName,
@@ -17,7 +17,7 @@ export const registerUser = async ({
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = await prisma.user.create({
+  const user = await prisma.user.create({
     data: {
       fullName,
       email,
@@ -27,6 +27,6 @@ export const registerUser = async ({
   });
 
   return {
-    user: { newUser },
+    user,
   };
 };

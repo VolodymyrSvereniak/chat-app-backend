@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { registerUser } from "../services/auth.service";
 import { generateToken } from "../utils/generateToken";
 import type { SignUpResponse } from "../types/auth.types";
+import { env } from "../lib/env";
 
 export const signUp = async (req: Request, res: Response): Promise<void> => {
   const result: SignUpResponse = await registerUser(req.body);
@@ -11,7 +12,8 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
     sameSite: "strict",
-    secure: process.env.NODE_ENV === "production" ? true : false,
+    secure: env.NODE_ENV === "production" ? true : false,
   });
   res.status(201).json(result);
 };
+ 

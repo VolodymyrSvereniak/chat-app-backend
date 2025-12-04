@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "../lib/prisma";
 import type { SignUpData } from "../types/auth.types";
-
+ 
 export const registerUser = async ({
   fullName,
   email,

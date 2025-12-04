@@ -4,4 +4,4 @@ import type { User } from "../generated/prisma/client";
 
 export type SignUpData = z.infer<typeof signUpSchema>;
 
-export type SignUpResponse = { user: Omit<User, "password"> };
+export type SignUpResponse = Omit<User, "password">;
